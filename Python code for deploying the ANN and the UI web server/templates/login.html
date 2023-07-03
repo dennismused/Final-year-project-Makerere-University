@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beehive monitor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="form_container" style="margin-top: 10px;">
+        <div class="form_logo">
+            <h1 style="margin-top: 15px; font-size: 10px;">D&A</h1>
+            <h1 style="margin-top: -12px; font-size: 10px;">BEEHIVE MONITORING</h1>
+            <h3 style="margin-top: -10px; font-size: 10px;">Is your Queen Bee Present?</h3>
+        </div>
+        <div class="form_content">
+			<h1 class="form_h1">Login</h1>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+			<form method="POST" action="{{ url_for('login') }}">
+			{{ form.csrf_token }}
+			<p>Username: {{ form.username }}</p>
+			<p>Password: {{ form.password }}</p>
+			<p><input type="submit" value="Login"></p>
+			</form>
+			<p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>		   
+        </div>
+
+        <div class="about" style="margin-top: 57px; height: 130px;">
+            <p class="abt"><span style="margin-right: 5px;">Email:</span><span>d&abeehivemonitoring@gmailo.com</span></p>
+            <div class="abt" style="margin-right: 5px;">Tel:</div><div class="abt">0703203625</div><div class="abt">0774028420</div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beehive monitor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        
+    <script type="text/javascript" src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('my response', function(msg) {
+            document.getElementById("message").textContent = msg.data;
+        });
+    </script>
+
+</head>
+<body>
+    <nav>
+        <div class="logo1">
+            <img decoding="async" src="/static/logo.png" alt="Logo Image">
+        </div>
+        <div class="hamburger">
+            <div class="bars1"></div>
+            <div class="bars2"></div>
+            <div class="bars3"></div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="{{url_for('account')}}">ACCOUNT</a></li>
+          <li><a href="{{url_for('about')}}">ABOUT</a></li>
+          <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+        </ul>
+        <div class="profile_cont">
+            <a href="{{url_for('update')}}"><img  class="profile" src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="Profile Picture"></a>
+            <b><p style="margin-left: -5px; color: white; font-size: 13px;">{{user.username}}</p></b>
+        </div>                
+    </nav>
+    <div class="container">
+        <div class="logo">
+            <h1>D&A</h1>
+            <h1 style="margin-top: -20px;">BEEHIVE MONITORING</h1>
+            <h3>Is your Queen Bee Present?</h3>
+        </div>
+        
+        <div class="own_content">
+            <p style="font-weight: bold; font-size: 16px;">Your audio was recorded from a hive with:</p>
+            <h1 style="color: black;">The Queen Bee <p>{{prediction}}</p></h1>
+            
+        </div>
+
+        <div class="about">
+            <p class="abt"><span style="margin-right: 5px;">Email:</span><span>d&abeehivemonitoring@gmailo.com</span></p>
+            <div class="abt" style="margin-right: 5px;">Tel:</div><div class="abt">0703203625</div><div class="abt">0774028420</div>
+        </div>
+    </div>
+
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      const links = document.querySelectorAll(".nav-links li");
+
+      hamburger.addEventListener('click', ()=>{
+        //Links
+          navLinks.classList.toggle("open");
+          links.forEach(link => {
+              link.classList.toggle("fade");
+          });
+
+          //Animation
+          hamburger.classList.toggle("toggle");
+      });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beehive monitor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="form_container" style="margin-top: 10px;">
+        <div class="form_logo">
+            <h1 style="margin-top: 15px; font-size: 10px;">D&A</h1>
+            <h1 style="margin-top: -12px; font-size: 10px;">BEEHIVE MONITORING</h1>
+            <h3 style="margin-top: -10px; font-size: 10px;">Is your Queen Bee Present?</h3>
+        </div>
+        <div class="form_content">
+            <h1>Register</h1>
+            <form action="/register" method="post">
+             {{ form.csrf_token }}
+             <p>Username: {{ form.username(placeholder="Enter a unique username") }}</p>
+             <p>Password: {{ form.password(placeholder="Enter a strong password") }}</p>
+             <p>Confirm Password: {{ form.confirm_password(placeholder="Enter the same password as above") }}</p>
+             <p>Email: {{ form.email(placeholder="Enter a valid email address") }}</p>
+             <p>Phone: {{ form.phone(placeholder="Enter a valid phone number") }}</p>
+             <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="about" style="margin-top: 25px; height: 122px;">
+            <p class="abt"><span style="margin-right: 5px;">Email:</span><span>d&abeehivemonitoring@gmailo.com</span></p>
+            <div class="abt" style="margin-right: 5px;">Tel:</div><div class="abt">0703203625</div><div class="abt">0774028420</div>
+        </div>
+    </div>
+</body>
+</html>
+
+

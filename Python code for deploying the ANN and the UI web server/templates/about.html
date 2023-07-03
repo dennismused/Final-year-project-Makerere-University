@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beehive monitor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        
+    <script type="text/javascript" src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('my response', function(msg) {
+            document.getElementById("message").textContent = msg.data;
+        });
+    </script>
+
+</head>
+<body>
+    <nav>
+        <div class="logo1">
+            <img decoding="async" src="/static/logo.png" alt="Logo Image">
+        </div>
+        <div class="hamburger">
+            <div class="bars1"></div>
+            <div class="bars2"></div>
+            <div class="bars3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{url_for('account')}}">ACCOUNT</a></li>
+            <li><a href="{{url_for('community')}}">COMMUNITY</a></li>
+            <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+        </ul>
+        <div class="classification"style="width: 100%; height: 30px;"><span style="margin-right: 10px;">Your queen bee is</span><span id="message" ></span></div>
+        <div class="profile_cont">
+            <a href="{{url_for('update')}}"><img  class="profile" src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="Profile Picture"></a>
+            <b><p style="margin-left: -5px; color: white; font-size: 13px;">{{user.username}}</p></b>
+        </div>                
+    </nav>
+    <div class="container">
+        <div class="logo">
+            <h1>D&A</h1>
+            <h1 style="margin-top: -20px;">BEEHIVE MONITORING</h1>
+            <h3>Is your Queen Bee Present?</h3>
+        </div>
+        
+        <div class="content">
+            <img class="img1" src="static/IMG-20230511-WA0042.jpg" alt="">
+            <p>
+                Welcome to D&A BEEHIVE MONITORING, the company that provides smart beehive monitoring systems for real-time monitoring. 
+                Our beehive monitoring systems usethe concept of machine learning to analyse and classify the sound from your beehive in order to keep you 
+                updated in real-time about the state of your beehive. Whether you are close to your hive or not, we shall keep you informed about 
+                about queen-state of your hive.
+            </p>
+            <br>
+            <p>
+                Our mission is to help preserve and support the honey bees, which are vital for the natural ecosystem and human life.
+                We believe that by using our systems, beekeepers can improve their productivity and profitability, while also contributing
+                to the conservation of these amazing creatures. 
+                In case you didn't know, the queen bee lays up to around 2,000 eggs a day. Lossing her means no more replacement for the dying bees. 
+                You need to know, in realitime, when she dies so that you can make timely intervention, and maybe replace her in time.
+                You won't only be on your journey towards maximizing production in your hive, but also making sure the number of pollinators of your
+                crops doesnt go down; in case you grow crops as well. 
+            </p>
+            <br>
+            <p>
+                If you are interested in our products and services, please contact us using the email or phone numbers below. We will be happy to answer your
+                questions and provide you with a customized solution for your needs. 
+                <h4>Thank you!</h4>
+            </p>
+    
+        </div>
+
+        <div class="about">
+            <p class="abt"><span style="margin-right: 5px;">Email:</span><span>d&abeehivemonitoring@gmailo.com</span></p>
+            <div class="abt" style="margin-right: 5px;">Tel:</div><div class="abt">0703203625</div><div class="abt">0774028420</div>
+        </div>
+    </div>
+
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      const links = document.querySelectorAll(".nav-links li");
+
+      hamburger.addEventListener('click', ()=>{
+        //Links
+          navLinks.classList.toggle("open");
+          links.forEach(link => {
+              link.classList.toggle("fade");
+          });
+
+          //Animation
+          hamburger.classList.toggle("toggle");
+      });
+    </script>
+</body>
+</html>

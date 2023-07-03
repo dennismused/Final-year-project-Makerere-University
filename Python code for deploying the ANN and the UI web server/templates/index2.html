@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beehive monitor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script>
+        var source = new EventSource('/stream');
+        source.onmessage = function(event) {
+            var p = document.getElementById('message');
+            p.innerHTML = event.data;
+        };
+    </script>
+
+</head>
+<body>
+    <nav>
+        <div class="logo1">
+            <img decoding="async" src="/static/logo.png" alt="Logo Image">
+        </div>
+        <div class="hamburger">
+            <div class="bars1"></div>
+            <div class="bars2"></div>
+            <div class="bars3"></div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="{{url_for('account')}}">ACCOUNT</a></li>
+          <li><a href="{{url_for('about')}}">ABOUT</a></li>
+          <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+        </ul>
+        <div class="classification"style="width: 100%; height: 30px;"><span style="margin-right: 10px;">Your queen bee is</span><span id="message" ></span></div>
+        <div class="profile_cont">
+            <a href="{{url_for('update')}}"><img  class="profile" src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="Profile Picture"></a>
+            <b><p style="margin-left: -5px; color: white; font-size: 13px;">{{user.username}}</p></b>
+        </div>                
+    </nav>
+    <div class="container">
+        <div class="logo">
+            <h1>D&A</h1>
+            <h1 style="margin-top: -20px;">BEEHIVE MONITORING</h1>
+            <h3>Is your Queen Bee Present?</h3>
+        </div>
+        
+        <div class="content">
+            <h1>Update</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('update') }}" method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" value="{{ user.username }}"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" value="{{ user.email }}"><br>
+                <label for="phone">Phone:</label><br>
+                <input type="tel" id="phone" name="phone" value="{{ user.phone }}"><br>
+                <label for="profile_pic">Profile Picture:</label><br>
+                <input type="file" id="profile_pic" name="profile_pic"><br><br>
+                <input type="submit" value="Update">
+            </form> 
+    
+        </div>
+
+        <div class="about">
+            <p class="abt"><span style="margin-right: 5px;">Email:</span><span>d&abeehivemonitoring@gmailo.com</span></p>
+            <div class="abt" style="margin-right: 5px;">Tel:</div><div class="abt">0703203625</div><div class="abt">0774028420</div>
+        </div>
+    </div>
+
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      const links = document.querySelectorAll(".nav-links li");
+
+      hamburger.addEventListener('click', ()=>{
+        //Links
+          navLinks.classList.toggle("open");
+          links.forEach(link => {
+              link.classList.toggle("fade");
+          });
+
+          //Animation
+          hamburger.classList.toggle("toggle");
+      });
+    </script>
+</body>
+</html>
+

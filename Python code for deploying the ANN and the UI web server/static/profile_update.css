@@ -1,0 +1,51 @@
+/* Style the container */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Style the form */
+  form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the form labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style the form inputs */
+  .form-control {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the form buttons */
+  .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+  }
+  
+  /* Style the primary button */
+  .btn-primary {
+    background-color: #007bff;
+  }
+  
+  /* Style the alert messages */
+  .alert {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the info alert */
+  .alert-info {
+    background-color: #17a2b8;
+  }
+  
