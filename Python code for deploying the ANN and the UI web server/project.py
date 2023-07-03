@@ -468,8 +468,6 @@ def own_classification():
         classification = 'ABSENT'
         print("Queen Bee is ABSENT")
 
-        ESP32_PhoneCall = 'http://192.168.4.1/phonecall'
-        response = requests.get(ESP32_PhoneCall)
     else:
         classification = 'PRESENT'
         print("Queen Bee is PRESENT")
